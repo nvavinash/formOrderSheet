@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 
-const InputPage = () => {
+const InputPage = ({onSubmit}) => {
   const [formData, setFormData] = useState({
     sairNo: "",
+    saNo: "",
+    applicant: "",
+    respondent:"",
+    amount:"",
+    transactionRef:"",
+    filingDate:"",
+    registrationDate:"",
+    presentBy:"",
+    applicationFee:"",
     aCounsels: [""],
     rCounsels: [""],
   });
@@ -37,13 +46,27 @@ const InputPage = () => {
     ));
 
   }
-  const addCounsel = () => {
+  const addACounsel = () => {
     setFormData((prevState) => ({
       ...prevState,
       aCounsels: [...prevState.aCounsels, ""],
     }));
   };
-  const removeCounsel = (index) => {
+  const addRCounsel = () =>{
+    setFormData((prevState) =>({
+      ...prevState,
+      rCounsels: [...prevState.rCounsels,""]
+    }));
+  }
+  const removeRCounsel = (index) => {
+    const updatedCounsels = [...formData.rCounsels];
+    updatedCounsels.splice(index,1);
+    setFormData((prevState) => ({
+      ...prevState,
+      rCounsels: updatedCounsels,
+    }));
+  }
+  const removeACounsel = (index) => {
     const updatedCounsels = [...formData.aCounsels];
     updatedCounsels.splice(index, 1);
     setFormData((prevState) => ({
@@ -125,7 +148,7 @@ const InputPage = () => {
                         {formData.aCounsels.length > 1 && (
                           <button
                             type="button"
-                            onClick={() => removeCounsel(index)}
+                            onClick={() => removeACounsel(index)}
                             className="bg-red-500 text-white px-4 py-2 rounded-md"
                           >
                             X
@@ -135,17 +158,19 @@ const InputPage = () => {
                     ))}
                   </ol>
                 </div>
+                
               </div>
               <div className="flex justify-end">
                 <button
                   type="button"
-                  onClick={addCounsel}
+                  onClick={addACounsel}
                   className="bg-purple-950 text-white rounded-md px-4 py-2 hover:bg-slate-800 "
                 >
                   {" "}
                   Add +
                 </button>
               </div>
+              
 
               {/* Respondent */}
               <div className="grid grid-cols-2 items-center text-center">
@@ -178,15 +203,35 @@ const InputPage = () => {
                           value={rCounsel}
                           onChange={(e)=>handleRCounselChange(index,e.target.value)}
                         />
+                        {formData.rCounsels.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => removeRCounsel(index)}
+                            className="bg-red-500 text-white px-4 py-2 rounded-md"
+                          >
+                            X
+                          </button>
+                        )}
                       </li>
                     ))}
                   </ol>
                 </div>
               </div>
+              <div className="flex justify-end">
+                  <button
+                  type="button"
+                  onClick={addRCounsel}
+                  className="bg-purple-950 text-white rounded-md px-4 py-2 hover:bg-slate-800 ">
+                    Add +
+                  </button>
+                </div>
               {/* Suit Amount */}
               <div className="grid grid-cols-2 items-center text-center">
-                <label htmlFor="amount">Suit Amount</label>
-                <input
+                <div>
+                <label htmlFor="amount"> Suit Amount </label>
+                </div>
+              <div>
+              <input
                   type="number"
                   name="amount"
                   value={formData.amount}
@@ -194,7 +239,9 @@ const InputPage = () => {
                   className="border-2 px-3 rounded-md p-2 m-2"
                 />
               </div>
-              <div className="flex justify-around text-center items-center">
+               
+              </div>
+              <div className="grid grid-cols-2 items-center text-center">
                 <div>
                   <label htmlFor="transactionRef">Transaction Ref No.</label>
                 </div>
@@ -208,8 +255,13 @@ const InputPage = () => {
                   />
                 </div>
               </div>
-              <div className="flex justify-around text-center items-center">
+              {/* Filling Date */}
+              <div className="grid grid-cols-2 items-center text-center">
+                <div>
                 <label htmlFor="filingDate">Filing Date</label>
+                </div>
+                <div>
+                    
                 <input
                   type="date"
                   name="filingDate"
@@ -217,10 +269,16 @@ const InputPage = () => {
                   onChange={handleChange}
                   className="border-2 px-3 rounded-md p-2 m-2"
                 />
+                </div>
+
               </div>
               {/* Registration Date */}
-              <div className="flex justify-around text-center items-center">
-                <label htmlFor="registrationDate">Registration Date</label>
+              <div className="grid grid-cols-2 items-center text-center">
+               <div>
+               <label htmlFor="registrationDate">Registration Date</label>
+               </div>
+               
+               <div>
                 <input
                   type="date"
                   name="registrationDate"
@@ -228,8 +286,11 @@ const InputPage = () => {
                   onChange={handleChange}
                   className="border-2 px-3 rounded-md p-2 m-2"
                 />
+                </div>
+                
+              
               </div>
-              <div className="flex justify-around text-center items-center">
+              <div className="grid grid-cols-2 items-center text-center">
                 <div>
                   <label htmlFor="presentBy">Presented By</label>
                 </div>
@@ -244,14 +305,14 @@ const InputPage = () => {
                 </div>
               </div>
               {/*Application Fee*/}
-              <div className="flex justify-around text-center items-center">
+              <div className="grid grid-cols-2 items-center text-center">
                 <div>
-                  <label htmlFor="presentBy">Application Fee</label>
+                  <label htmlFor="applicationFee">Application Fee</label>
                 </div>
                 <div>
                   <input
                     type="number"
-                    name="appicationFee"
+                    name="applicationFee"
                     value={formData.applicationFee}
                     onChange={handleChange}
                     className="border-2 px-3 rounded-md p-2 m-2"
