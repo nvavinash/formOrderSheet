@@ -79,11 +79,10 @@ const formatDate = (inputDate) =>{
         <div className="flex flex-wrap">
           Applicant present by Sri/Smt.
           <span className="underline mx-2 font-medium">{formData.presentBy}</span>. The
-          value of SA is Rs.
-          <span className="underline mx-2 font-medium">{formData.amount}</span>. The
+          value of SA is Rs. <span className="underline mx-1 font-medium">{formData.amount}</span>. The
           application fee of Rs.
-          <span className="underline mx-2 font-medium">{formData.applicationFee}
-            {formData.applicationFeeWords}  </span>
+          <span className="underline mx-2 font-medium">{formData.applicationFee}</span>
+          <p>( {formData.applicationFeeWords})  </p>
           is paid through Online Transaction Ref. No.
           <span className="underline mx-2 font-medium">{formData.transactionRef}</span>
           Dated
