@@ -11,7 +11,9 @@ const InputPage = ({onSubmit}) => {
     filingDate:"",
     registrationDate:"",
     presentBy:"",
+    callOn:"",
     applicationFee:"",
+    applicationFeeWords:"",
     aCounsels: [""],
     rCounsels: [""],
   });
@@ -225,6 +227,21 @@ const InputPage = ({onSubmit}) => {
                     Add +
                   </button>
                 </div>
+                {/*Adding Call on */}
+                <div className="grid grid-cols-2 items-center text-center">
+                <div className="text-center">
+                  <label htmlFor="call on">Call on date</label>
+                </div>
+                <div>
+                  <input
+                    type="date"
+                    name="callOn"
+                    value={formData.callOn}
+                    onChange={handleChange}
+                    className="border-2 px-3 rounded-md p-2 m-2"
+                  />
+                </div>
+              </div>
               {/* Suit Amount */}
               <div className="grid grid-cols-2 items-center text-center">
                 <div>
@@ -319,6 +336,19 @@ const InputPage = ({onSubmit}) => {
                   />
                 </div>
               </div>
+                {/*Application Fee Words*/}
+                <div className="grid grid-cols-2 items-center text-center">
+                  <div>
+                  <label htmlFor="applicationFeeWords">Application Fee in Words</label>
+                  </div>
+                  <div>
+                    <input type="text" 
+                    name="applicationFeeWords"
+                    value={formData.applicationFeeWords}
+                    onChange={handleChange}
+                    className="border-2 px-3 rounded-md p-2 m-2"/>
+                  </div>
+                </div>
               {/* Submit Button*/}
               <div className="flex justify-center">
                 <button

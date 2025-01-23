@@ -1,11 +1,16 @@
 import React from 'react'
 
+
 const PrintPage = ({formData}) => {
 const formatDate = (inputDate) =>{
-    const [day, month, year] = inputDate.split("-")
+    const [year, month, day] = inputDate.split("-")
     return `${day}-${month}-${year}`
     
   }
+
+
+
+
  
   return (
     
@@ -60,7 +65,7 @@ const formatDate = (inputDate) =>{
         {" "}
         <h4 className="flex justify-center mt-4">
           {" "}
-          Placed before Hon'ble P.O call on:
+          Placed before Hon'ble P.O call on: <span className='font-semibold underline mx-1'>{formatDate(formData.callOn)}</span>
         </h4>
       </div>
 
@@ -68,7 +73,7 @@ const formatDate = (inputDate) =>{
         <h3 className="font-semibold flex justify-end mt-10">REGISTRAR</h3>
       </div>
       <div>Date of filing: {formatDate(formData.filingDate)}</div>
-      <div>Date of Registration: {formData.registrationDate}</div>
+      <div>Date of Registration: {formatDate(formData.registrationDate)}</div>
 
       <div>
         <div className="flex flex-wrap">
@@ -78,13 +83,13 @@ const formatDate = (inputDate) =>{
           <span className="underline mx-2 font-medium">{formData.amount}</span>. The
           application fee of Rs.
           <span className="underline mx-2 font-medium">{formData.applicationFee}
-               (Rupees One lac thirty four thousand only)</span>
+            {formData.applicationFeeWords}  </span>
           is paid through Online Transaction Ref. No.
           <span className="underline mx-2 font-medium">{formData.transactionRef}</span>
           Dated
-          <span className="underline mx-2 font-medium">{formData.filingDate}</span>
+          <span className="underline mx-2 font-medium">{formatDate(formData.filingDate)}</span>
           drawn on
-          <span className="underline mx-2 font-medium">{formData.filingDate} .</span>
+          <span className="underline mx-2 font-medium">{formatDate(formData.filingDate)} .</span>
           <span>
             Application is in time. Necessary paper book copies, postal
             envelopes are furnished. Scrutiny report enclosed.
